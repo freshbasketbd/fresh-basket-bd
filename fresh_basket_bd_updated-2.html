@@ -1,86 +1,989 @@
-<!DOCTYPE html>
-<html lang="bn">
+<!DOCTYPE html><html lang="bn">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Fresh Basket BD — বাংলার ঐতিহ্য, বাছাই করা স্বাদ</title>
-<style>
-*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Bengali",sans-serif;background:#faf8f1;color:#19352a}
-a{text-decoration:none;color:inherit}.top{background:#173f2d;color:#fff;text-align:center;padding:8px;font-size:13px}
-header{position:sticky;top:0;z-index:5;background:#fff;border-bottom:1px solid #e9e4d8}
-.nav{max-width:1100px;margin:auto;padding:14px 18px;display:flex;align-items:center;gap:14px}
-.logo{font-weight:900;font-size:22px;letter-spacing:-.5px}.logo span{color:#d9852b}
-.tag{font-size:12px;color:#6d756e;margin-left:2px}
-.search{margin-left:auto;border:1px solid #ddd6c9;border-radius:22px;padding:9px 13px;width:220px;background:#faf9f5}
-.cart{background:#d9852b;color:#fff;border:0;border-radius:20px;padding:10px 15px;font-weight:700}
-.hero{max-width:1100px;margin:22px auto;padding:0 18px}
-.heroBox{border-radius:28px;overflow:hidden;background:linear-gradient(120deg,#173f2d,#2e6348);color:#fff;padding:44px 34px;position:relative}
-.heroBox:after{content:"🌿  🐟  🫙";position:absolute;right:30px;bottom:20px;font-size:70px;opacity:.18}
-.kicker{color:#ffd38d;font-weight:700}.hero h1{font-size:clamp(32px,6vw,58px);line-height:1.05;margin:12px 0}.hero p{max-width:600px;color:#e8efe9;line-height:1.7}
-.btn{display:inline-block;margin-top:12px;background:#e39439;color:#fff;padding:12px 20px;border-radius:24px;font-weight:800}
-section{max-width:1100px;margin:38px auto;padding:0 18px}.title{display:flex;justify-content:space-between;align-items:end;margin-bottom:18px}.title h2{margin:0;font-size:27px}.muted{color:#737b75;font-size:14px}
-.cats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.cat{background:#fff;border:1px solid #ebe5d9;border-radius:20px;padding:20px;min-height:150px;box-shadow:0 6px 20px #244a3510}.icon{font-size:42px}.cat h3{margin:12px 0 5px}.cat p{margin:0;color:#737b75;font-size:13px}
-.products{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.card{background:#fff;border:1px solid #ebe5d9;border-radius:20px;overflow:hidden}.pic{height:150px;background:#eee8dc;display:grid;place-items:center;font-size:62px}.info{padding:15px}.badge{font-size:11px;background:#eef5ef;color:#2d6245;padding:5px 8px;border-radius:10px}.info h3{font-size:17px;margin:10px 0 5px}.price{font-size:19px;font-weight:900}.unit{font-size:12px;color:#777}.add{width:100%;border:0;background:#173f2d;color:#fff;padding:10px;border-radius:12px;margin-top:12px;font-weight:800}
-.feature{background:#f0eadc;border-radius:24px;padding:28px;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}.feature div{display:flex;gap:12px}.feature b{display:block;margin-bottom:4px}.feature span{font-size:25px}
-.order{background:#173f2d;color:#fff;border-radius:25px;padding:28px}.order h2{margin-top:0}.orderGrid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.order input,.order textarea{width:100%;padding:12px;border:0;border-radius:10px;margin-top:6px}.order textarea{min-height:90px}.full{grid-column:1/-1}
-footer{margin-top:45px;background:#102d21;color:#dfe9e2;padding:35px 18px}.foot{max-width:1100px;margin:auto;display:flex;justify-content:space-between;gap:20px}.small{font-size:13px;color:#aebdb4}
-@media(max-width:800px){.cats{grid-template-columns:repeat(2,1fr)}.products{grid-template-columns:repeat(2,1fr)}.search{display:none}.tag{display:none}.heroBox{padding:34px 24px}.feature{grid-template-columns:1fr}.orderGrid{grid-template-columns:1fr}.full{grid-column:auto}.foot{flex-direction:column}}
-@media(max-width:460px){.nav{padding:12px}.logo{font-size:19px}.cats{gap:9px}.products{gap:9px}.pic{height:120px;font-size:50px}section{margin:30px auto}.hero{margin-top:12px}}
-</style>
-</head>
-<body>
-<div class="top">🚚 নির্বাচিত পণ্যে সারা বাংলাদেশে ডেলিভারি • সতেজতা ও মানের প্রতি যত্ন</div>
-<header><div class="nav">
-<div><div class="logo">Fresh Basket <span>BD</span></div><div class="tag">বাংলার ঐতিহ্য, বাছাই করা স্বাদ</div></div>
-<input class="search" placeholder="পণ্য খুঁজুন..." oninput="searchProducts(this.value)">
-<button class="cart" onclick="showCart()">🛒 কার্ট (<span id="count">0</span>)</button>
-</div></header>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Fresh Basket BD — অনলাইন গ্রোসারি শপ</title><link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800&display=swap" rel="stylesheet"><style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
 
-<div class="hero"><div class="heroBox">
-<div class="kicker">FRESH BASKET BD</div><h1>সাধারণ বাজার নয়,<br>বিশেষ স্বাদের ঠিকানা।</h1>
-<p>বাংলার ঐতিহ্যবাহী খাবার, বাছাই করা সামুদ্রিক মাছ এবং ঘরোয়া স্বাদের বিশেষ পণ্য—এক জায়গায়।</p>
-<a class="btn" href="#products">পণ্য দেখুন →</a>
-</div></div>
+body{
+  font-family:"Noto Sans Bengali",sans-serif;
+  background:#f7f9f7;
+  color:#222;
+}
 
-<section><div class="title"><h2>আমাদের বিশেষ সংগ্রহ</h2><span class="muted">চারটি আলাদা স্বাদের জগৎ</span></div>
-<div class="cats">
-<div class="cat"><div class="icon">🐟</div><h3>সমুদ্র সম্ভার</h3><p>বাছাই করা সামুদ্রিক মাছ ও সি-ফুড</p></div>
-<div class="cat"><div class="icon">🫙</div><h3>পাবনার ঘ্রাণ</h3><p>পাবনার ঐতিহ্যবাহী ঘি ও বিশেষ পণ্য</p></div>
-<div class="cat"><div class="icon">🌾</div><h3>হারানো স্বাদ</h3><p>লাল চালের গুঁড়া, ছাতু, লালি গুড়সহ ঐতিহ্যবাহী স্বাদ</p></div>
-<div class="cat"><div class="icon">🧄</div><h3>ঘরোয়া মসলা</h3><p>ঘরে তৈরি আদা বাটা ও রসুন বাটা</p></div>
-</div></section>
+header{
+  background:#16823b;
+  color:white;
+  padding:15px 20px;
+  position:sticky;
+  top:0;
+  z-index:100;
+  box-shadow:0 2px 8px #0002;
+}
 
-<section id="products"><div class="title"><h2>বাছাই করা পণ্য</h2><span class="muted">মূল্য পরে আপনারা সেট করতে পারবেন</span></div>
-<div class="products" id="productGrid"></div></section>
+.header-inner{
+  max-width:1100px;
+  margin:auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+}
 
-<section><div class="feature">
-<div><span>🌿</span><div><b>বাছাই করা পণ্য</b><small>মান ও স্বাদের দিকে গুরুত্ব</small></div></div>
-<div><span>📦</span><div><b>যত্নসহ প্যাকেজিং</b><small>পণ্য অনুযায়ী নিরাপদ প্যাকিং</small></div></div>
-<div><span>🤝</span><div><b>বিশ্বস্ত সেবা</b><small>অর্ডারের আগে তথ্য যাচাই</small></div></div>
-</div></section>
+.logo{
+  font-size:22px;
+  font-weight:800;
+}
 
-<section><div class="order"><h2>অর্ডার করতে চান?</h2><p class="small">আপনার তথ্য দিন—পরবর্তীতে এখানে WhatsApp/Facebook অর্ডার সিস্টেম যুক্ত করা যাবে।</p>
-<div class="orderGrid"><label>নাম<input id="name" placeholder="আপনার নাম"></label><label>মোবাইল<input id="phone" placeholder="মোবাইল নম্বর"></label><label class="full">ঠিকানা<textarea id="address" placeholder="ডেলিভারি ঠিকানা"></textarea></label>
-<button class="btn full" onclick="submitOrder()">অর্ডারের অনুরোধ পাঠান</button></div></div></section>
+.logo span{
+  color:#ffd43b;
+}
 
-<footer><div class="foot"><div><div class="logo">Fresh Basket <span>BD</span></div><p class="small">বাংলার ঐতিহ্য, বাছাই করা স্বাদ।</p></div><div class="small">📞 যোগাযোগ: আপনার নম্বর এখানে বসবে<br>📘 Facebook: আপনার পেজের লিংক এখানে বসবে</div></div></footer>
+.cart-btn{
+  background:#ff9f1c;
+  color:white;
+  border:0;
+  padding:10px 16px;
+  border-radius:8px;
+  font-size:15px;
+  cursor:pointer;
+  font-family:inherit;
+}
 
-<script>
-const products=[
-{name:"পাবনার ঐতিহ্যবাহী ঘি",cat:"পাবনার ঘ্রাণ",icon:"🫙",price:"৳ —",unit:"500 ml"},
-{name:"সামুদ্রিক মাছ",cat:"সমুদ্র সম্ভার",icon:"🐟",price:"৳ —",unit:"1 KG"},
-{name:"লাল চালের গুঁড়া",cat:"হারানো স্বাদ",icon:"🌾",price:"৳ —",unit:"500 gm"},
-{name:"ছাতু",cat:"হারানো স্বাদ",icon:"🥣",price:"৳ —",unit:"500 gm"},
-{name:"লালি গুড়",cat:"হারানো স্বাদ",icon:"🍯",price:"৳ —",unit:"500 gm"},
-{name:"আদা বাটা",cat:"ঘরোয়া মসলা",icon:"🫚",price:"৳ —",unit:"250 gm"},
-{name:"রসুন বাটা",cat:"ঘরোয়া মসলা",icon:"🧄",price:"৳ —",unit:"250 gm"}];
-let cart=JSON.parse(localStorage.getItem("fbb_cart")||"[]");
-function render(list=products){document.getElementById("productGrid").innerHTML=list.map((p,i)=>`<div class="card"><div class="pic">${p.icon}</div><div class="info"><span class="badge">${p.cat}</span><h3>${p.name}</h3><div class="price">${p.price} <span class="unit">/ ${p.unit}</span></div><button class="add" onclick="add(${products.indexOf(p)})">কার্টে যোগ করুন</button></div></div>`).join("")}
-function add(i){cart.push(products[i]);localStorage.setItem("fbb_cart",JSON.stringify(cart));update();alert("কার্টে যোগ হয়েছে: "+products[i].name)}
-function update(){document.getElementById("count").textContent=cart.length}
-function showCart(){if(!cart.length)return alert("কার্ট এখন খালি।");alert("কার্টে "+cart.length+"টি পণ্য আছে।\\n\\n"+cart.map(x=>"• "+x.name).join("\\n"))}
-function searchProducts(q){q=q.toLowerCase();render(products.filter(p=>(p.name+p.cat).toLowerCase().includes(q)))}
-function submitOrder(){let n=document.getElementById("name").value,p=document.getElementById("phone").value,a=document.getElementById("address").value;if(!n||!p||!a)return alert("নাম, মোবাইল ও ঠিকানা পূরণ করুন।");alert("ধন্যবাদ "+n+"! আপনার অর্ডারের অনুরোধ নেওয়া হয়েছে।\\n\\nনোট: লাইভ WhatsApp/Facebook অর্ডার লিংক যোগ করার জন্য আপনার নম্বর/লিংক বসাতে হবে।")}
-render();update();
-</script>
-</body></html>
+.hero{
+  background:linear-gradient(135deg,#16823b,#28a745);
+  color:white;
+  padding:35px 20px;
+  text-align:center;
+}
+
+.hero h1{
+  font-size:30px;
+  margin-bottom:8px;
+}
+
+.hero p{
+  font-size:16px;
+}
+
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:20px;
+}
+
+.search-box{
+  margin-bottom:20px;
+}
+
+.search-box input{
+  width:100%;
+  padding:14px 16px;
+  border:1px solid #ddd;
+  border-radius:10px;
+  font-size:16px;
+  font-family:inherit;
+  outline:none;
+}
+
+.search-box input:focus{
+  border-color:#16823b;
+}
+
+.categories{
+  display:flex;
+  gap:8px;
+  overflow-x:auto;
+  margin-bottom:20px;
+  padding-bottom:5px;
+}
+
+.categories button{
+  border:1px solid #16823b;
+  background:white;
+  color:#16823b;
+  padding:8px 14px;
+  border-radius:20px;
+  white-space:nowrap;
+  cursor:pointer;
+  font-family:inherit;
+}
+
+.categories button.active,
+.categories button:hover{
+  background:#16823b;
+  color:white;
+}
+
+.section-title{
+  font-size:23px;
+  margin-bottom:15px;
+}
+
+.product-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
+}
+
+.product-card{
+  background:white;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 2px 10px #0001;
+  transition:.2s;
+}
+
+.product-card:hover{
+  transform:translateY(-2px);
+}
+
+.product-image{
+  height:170px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#f3f7f3;
+  position:relative;
+}
+
+.product-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.product-icon{
+  font-size:70px;
+}
+
+.badge{
+  position:absolute;
+  top:8px;
+  left:8px;
+  background:#ff9f1c;
+  color:white;
+  padding:4px 8px;
+  border-radius:5px;
+  font-size:12px;
+}
+
+.product-info{
+  padding:13px;
+}
+
+.product-info h3{
+  font-size:17px;
+  margin-bottom:5px;
+}
+
+.category{
+  color:#777;
+  font-size:13px;
+}
+
+.price{
+  color:#16823b;
+  font-size:19px;
+  font-weight:800;
+  margin-top:8px;
+}
+
+.unit{
+  color:#777;
+  font-size:13px;
+}
+
+.add-btn{
+  width:100%;
+  margin-top:10px;
+  padding:9px;
+  border:0;
+  background:#16823b;
+  color:white;
+  border-radius:7px;
+  cursor:pointer;
+  font-family:inherit;
+}
+
+.add-btn:hover{
+  background:#116b31;
+}
+
+.empty{
+  text-align:center;
+  padding:40px 10px;
+  color:#777;
+  grid-column:1/-1;
+}
+
+.modal{
+  position:fixed;
+  inset:0;
+  background:#0008;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:500;
+  padding:15px;
+}
+
+.modal.show{
+  display:flex;
+}
+
+.modal-card{
+  background:white;
+  width:100%;
+  max-width:500px;
+  max-height:90vh;
+  overflow:auto;
+  border-radius:14px;
+  padding:20px;
+  position:relative;
+}
+
+.close{
+  position:absolute;
+  right:15px;
+  top:12px;
+  border:0;
+  background:none;
+  font-size:25px;
+  cursor:pointer;
+}
+
+.modal-card h2{
+  margin-bottom:18px;
+}
+
+.cart-item{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  border-bottom:1px solid #eee;
+  padding:12px 0;
+}
+
+.cart-name{
+  flex:1;
+}
+
+.qty{
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+
+.qty button{
+  width:28px;
+  height:28px;
+  border:1px solid #ddd;
+  background:white;
+  border-radius:5px;
+  cursor:pointer;
+}
+
+.total{
+  font-size:20px;
+  font-weight:800;
+  color:#16823b;
+  margin:15px 0;
+}
+
+.order-form input,
+.order-form textarea{
+  width:100%;
+  padding:12px;
+  margin-bottom:10px;
+  border:1px solid #ddd;
+  border-radius:7px;
+  font-family:inherit;
+  font-size:15px;
+}
+
+.order-form textarea{
+  min-height:80px;
+  resize:vertical;
+}
+
+.order-btn{
+  width:100%;
+  background:#16823b;
+  color:white;
+  border:0;
+  padding:12px;
+  border-radius:8px;
+  font-size:16px;
+  cursor:pointer;
+  font-family:inherit;
+}
+
+.loading{
+  text-align:center;
+  padding:40px;
+  grid-column:1/-1;
+}
+
+footer{
+  margin-top:40px;
+  background:#126b32;
+  color:white;
+  text-align:center;
+  padding:25px 15px;
+}
+
+.toast{
+  position:fixed;
+  bottom:20px;
+  left:50%;
+  transform:translateX(-50%);
+  background:#222;
+  color:white;
+  padding:10px 18px;
+  border-radius:8px;
+  display:none;
+  z-index:1000;
+}
+
+@media(max-width:800px){
+  .product-grid{
+    grid-template-columns:repeat(3,1fr);
+  }
+}
+
+@media(max-width:600px){
+  .header-inner{
+    flex-direction:row;
+  }
+
+  .hero h1{
+    font-size:24px;
+  }
+
+  .product-grid{
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+  }
+
+  .product-image{
+    height:135px;
+  }
+
+  .product-icon{
+    font-size:55px;
+  }
+
+  .product-info{
+    padding:10px;
+  }
+
+  .product-info h3{
+    font-size:15px;
+  }
+
+  .price{
+    font-size:17px;
+  }
+}
+</style></head><body><header>
+  <div class="header-inner">
+    <div class="logo">🛒 Fresh <span>Basket</span> BD</div>
+    <button class="cart-btn" onclick="showCart()">
+      🛒 কার্ট (<span id="cartCount">0</span>)
+    </button>
+  </div>
+</header><section class="hero">
+  <h1>Fresh Basket BD</h1>
+  <p>তাজা পণ্য, সহজে অর্ডার করুন</p>
+</section><main class="container">  <div class="search-box">
+    <input
+      type="text"
+      placeholder="🔎 পণ্য খুঁজুন..."
+      oninput="searchProducts(this.value)"
+    >
+  </div>  <div class="categories" id="categories">
+    <button class="active" onclick="filterCategory('all',this)">
+      সব পণ্য
+    </button>
+  </div>  <h2 class="section-title">আমাদের পণ্য</h2>  <div class="product-grid" id="productGrid">
+    <div class="loading">পণ্য লোড হচ্ছে...</div>
+  </div></main><footer>
+  <h3>Fresh Basket BD</h3>
+  <p>আপনার বিশ্বস্ত অনলাইন গ্রোসারি শপ</p>
+</footer><!-- CART MODAL --><div class="modal" id="cartModal">  <div class="modal-card"><button class="close" onclick="closeCart()">×</button>
+
+<h2>🛒 আপনার কার্ট</h2>
+
+<div id="cartItems"></div>
+
+<div class="total">
+  মোট: ৳<span id="cartTotal">0</span>
+</div>
+
+<div class="order-form">
+
+  <h3 style="margin-bottom:10px;">অর্ডারের তথ্য</h3>
+
+  <input
+    id="name"
+    type="text"
+    placeholder="আপনার নাম"
+  >
+
+  <input
+    id="phone"
+    type="tel"
+    placeholder="মোবাইল নম্বর"
+  >
+
+  <textarea
+    id="address"
+    placeholder="ডেলিভারি ঠিকানা"
+  ></textarea>
+
+  <button class="order-btn" onclick="submitOrder()">
+    অর্ডার করুন
+  </button>
+
+</div>
+
+  </div></div><div class="toast" id="toast"></div><script type="module">
+
+import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+  getFirestore,
+  collection,
+  onSnapshot,
+  addDoc,
+  serverTimestamp
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBZwu_NOP36QQqHmFatF4kGPapVBFe8t2I",
+  authDomain: "fresh-basket-bd.firebaseapp.com",
+  projectId: "fresh-basket-bd",
+  storageBucket: "fresh-basket-bd.firebasestorage.app",
+  messagingSenderId: "419953977573",
+  appId: "1:419953977573:web:7841b5851dac96b1380c0c",
+  measurementId: "G-WC771F869Y"
+};
+
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+
+let products = [];
+let cart = JSON.parse(localStorage.getItem("fbb_cart") || "[]");
+
+let currentCategory = "all";
+let searchText = "";
+
+
+/* FIRESTORE PRODUCTS */
+
+onSnapshot(
+  collection(db, "products"),
+  snapshot => {
+
+    products = snapshot.docs.map(doc => ({
+      id: doc.id,
+      ...doc.data()
+    }));
+
+    createCategories();
+    renderProducts();
+
+  },
+  error => {
+
+    console.error(error);
+
+    document.getElementById("productGrid").innerHTML =
+      `<div class="empty">
+        পণ্য লোড করা যাচ্ছে না।<br>
+        পরে আবার চেষ্টা করুন।
+      </div>`;
+
+  }
+);
+
+
+/* CATEGORY */
+
+function createCategories(){
+
+  const box = document.getElementById("categories");
+
+  const categories = [
+    ...new Set(
+      products
+        .map(p => p.category)
+        .filter(Boolean)
+    )
+  ];
+
+  box.innerHTML = `
+    <button
+      class="${currentCategory === "all" ? "active" : ""}"
+      onclick="filterCategory('all',this)">
+      সব পণ্য
+    </button>
+  `;
+
+  categories.forEach(category => {
+
+    const button = document.createElement("button");
+
+    button.textContent = category;
+
+    if(category === currentCategory){
+      button.classList.add("active");
+    }
+
+    button.onclick = function(){
+      filterCategory(category,this);
+    };
+
+    box.appendChild(button);
+
+  });
+}
+
+
+/* RENDER */
+
+function renderProducts(){
+
+  const grid = document.getElementById("productGrid");
+
+  let list = products.filter(p => {
+
+    const matchCategory =
+      currentCategory === "all" ||
+      p.category === currentCategory;
+
+    const text =
+      `${p.name || ""} ${p.category || ""}`.toLowerCase();
+
+    const matchSearch =
+      !searchText ||
+      text.includes(searchText.toLowerCase());
+
+    return matchCategory && matchSearch;
+
+  });
+
+
+  if(!list.length){
+
+    grid.innerHTML =
+      `<div class="empty">
+        কোনো পণ্য পাওয়া যায়নি।
+      </div>`;
+
+    return;
+  }
+
+
+  grid.innerHTML = list.map(p => {
+
+    const image = p.imageUrl
+      ? `<img src="${p.imageUrl}" alt="${escapeHtml(p.name || "Product")}">`
+      : `<div class="product-icon">${p.emoji || "🛒"}</div>`;
+
+
+    return `
+      <div class="product-card">
+
+        <div class="product-image">
+
+          ${p.badge
+            ? `<div class="badge">${escapeHtml(p.badge)}</div>`
+            : ""
+          }
+
+          ${image}
+
+        </div>
+
+        <div class="product-info">
+
+          <h3>${escapeHtml(p.name || "পণ্য")}</h3>
+
+          <div class="category">
+            ${escapeHtml(p.category || "")}
+          </div>
+
+          <div class="price">
+            ৳${Number(p.price || 0).toLocaleString("bn-BD")}
+          </div>
+
+          <div class="unit">
+            ${escapeHtml(p.unit || "")}
+          </div>
+
+          <button
+            class="add-btn"
+            onclick="addToCart('${p.id}')">
+            🛒 কার্টে যোগ করুন
+          </button>
+
+        </div>
+
+      </div>
+    `;
+
+  }).join("");
+
+}
+
+
+/* SEARCH */
+
+window.searchProducts = function(value){
+
+  searchText = value.trim();
+
+  renderProducts();
+
+};
+
+
+/* CATEGORY FILTER */
+
+window.filterCategory = function(category, button){
+
+  currentCategory = category;
+
+  document
+    .querySelectorAll(".categories button")
+    .forEach(x => x.classList.remove("active"));
+
+  button.classList.add("active");
+
+  renderProducts();
+
+};
+
+
+/* ADD TO CART */
+
+window.addToCart = function(id){
+
+  const product = products.find(p => p.id === id);
+
+  if(!product) return;
+
+
+  const existing = cart.find(x => x.id === id);
+
+  if(existing){
+
+    existing.qty++;
+
+  }else{
+
+    cart.push({
+      id: product.id,
+      name: product.name,
+      price: Number(product.price || 0),
+      unit: product.unit || "",
+      qty: 1
+    });
+
+  }
+
+
+  saveCart();
+
+  showToast("পণ্যটি কার্টে যোগ হয়েছে");
+
+};
+
+
+/* CART */
+
+function saveCart(){
+
+  localStorage.setItem(
+    "fbb_cart",
+    JSON.stringify(cart)
+  );
+
+  updateCartCount();
+
+}
+
+
+function updateCartCount(){
+
+  const count =
+    cart.reduce((sum,item) => sum + item.qty,0);
+
+  document.getElementById("cartCount").textContent = count;
+
+}
+
+
+function cartTotal(){
+
+  return cart.reduce(
+    (sum,item) =>
+      sum + item.price * item.qty,
+    0
+  );
+
+}
+
+
+/* SHOW CART */
+
+window.showCart = function(){
+
+  renderCart();
+
+  document
+    .getElementById("cartModal")
+    .classList.add("show");
+
+};
+
+
+window.closeCart = function(){
+
+  document
+    .getElementById("cartModal")
+    .classList.remove("show");
+
+};
+
+
+/* RENDER CART */
+
+function renderCart(){
+
+  const box =
+    document.getElementById("cartItems");
+
+
+  if(!cart.length){
+
+    box.innerHTML =
+      `<p style="text-align:center;padding:20px">
+        আপনার কার্ট খালি।
+      </p>`;
+
+  }else{
+
+    box.innerHTML = cart.map(item => `
+
+      <div class="cart-item">
+
+        <div class="cart-name">
+
+          <b>${escapeHtml(item.name)}</b>
+
+          <div style="font-size:13px;color:#777">
+            ৳${item.price.toLocaleString("bn-BD")}
+            ${escapeHtml(item.unit)}
+          </div>
+
+        </div>
+
+        <div class="qty">
+
+          <button onclick="changeQty('${item.id}',-1)">
+            −
+          </button>
+
+          <b>${item.qty}</b>
+
+          <button onclick="changeQty('${item.id}',1)">
+            +
+          </button>
+
+        </div>
+
+      </div>
+
+    `).join("");
+
+  }
+
+
+  document.getElementById("cartTotal").textContent =
+    cartTotal().toLocaleString("bn-BD");
+
+}
+
+
+window.changeQty = function(id,change){
+
+  const item = cart.find(x => x.id === id);
+
+  if(!item) return;
+
+  item.qty += change;
+
+  if(item.qty <= 0){
+
+    cart = cart.filter(x => x.id !== id);
+
+  }
+
+  saveCart();
+  renderCart();
+
+};
+
+
+/* SUBMIT ORDER */
+
+window.submitOrder = async function(){
+
+  if(!cart.length){
+
+    alert("আপনার কার্ট খালি।");
+
+    return;
+  }
+
+
+  const name =
+    document.getElementById("name").value.trim();
+
+  const phone =
+    document.getElementById("phone").value.trim();
+
+  const address =
+    document.getElementById("address").value.trim();
+
+
+  if(!name || !phone || !address){
+
+    alert("নাম, মোবাইল নম্বর এবং ঠিকানা দিন।");
+
+    return;
+  }
+
+
+  const total = cartTotal();
+
+
+  const orderData = {
+
+    customer: name,
+
+    phone: phone,
+
+    address: address,
+
+    items: cart.map(item => ({
+
+      productId: item.id,
+
+      name: item.name,
+
+      price: item.price,
+
+      unit: item.unit,
+
+      qty: item.qty
+
+    })),
+
+    total: total,
+
+    status: "নতুন",
+
+    createdAt: serverTimestamp()
+
+  };
+
+
+  try{
+
+    await addDoc(
+      collection(db,"orders"),
+      orderData
+    );
+
+
+    cart = [];
+
+    saveCart();
+
+    document.getElementById("name").value = "";
+    document.getElementById("phone").value = "";
+    document.getElementById("address").value = "";
+
+    closeCart();
+
+    alert("অর্ডার সফলভাবে গ্রহণ করা হয়েছে।");
+
+  }catch(error){
+
+    console.error(error);
+
+    alert(
+      "অর্ডার পাঠানো যায়নি। আবার চেষ্টা করুন।"
+    );
+
+  }
+
+};
+
+
+/* TOAST */
+
+function showToast(message){
+
+  const toast =
+    document.getElementById("toast");
+
+  toast.textContent = message;
+
+  toast.style.display = "block";
+
+  setTimeout(() => {
+
+    toast.style.display = "none";
+
+  },2000);
+
+}
+
+
+/* ESCAPE HTML */
+
+function escapeHtml(value){
+
+  return String(value).replace(
+    /[&<>"']/g,
+    m => ({
+      "&":"&amp;",
+      "<":"&lt;",
+      ">":"&gt;",
+      '"':"&quot;",
+      "'":"&#039;"
+    }[m])
+  );
+
+}
+
+
+updateCartCount();
+
+</script></body>
+</html>
